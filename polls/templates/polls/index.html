@@ -1,0 +1,19 @@
+{% extends "templates/layout.html" %}
+{% load static %}
+
+{% block title %}
+    Polls Index
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% endblock %}
